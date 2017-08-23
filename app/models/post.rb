@@ -11,5 +11,6 @@
 
 class Post < ApplicationRecord
   belongs_to :user
-  scope :most_recent, -> (limit) { order(created_at: :desc).limit(limit)}
+  has_many :comments
+  scope :most_recent_n, -> (limit) { order(created_at: :desc).limit(limit) }
 end

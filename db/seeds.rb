@@ -5,27 +5,23 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-users = User.create([{name: "Austin Adams"}, {name: "Zach Arnold"}]);
-posts = Post.create([
-                        {
-                            user: users[0], content:
-                            "we build scala code all day long."
-                        },
-                        {
-                            user: users[1], content:
-                            "we do devops all day long."
-                        }
-                    ]);
-comments = Comment.create([{
-                              post: posts[0],
-                              content: "Sweet"
-                           },
-                           {
-                               post: posts[0],
-                               content: "Rad"
-                           },
-                           {
-                               post: posts[0],
-                               content: "Radical"
-                           }
-                          ])
+users = Faker::Number.between(1, 200)
+users.times do
+  User.create({name: Faker::Name.name});
+end
+100.times do
+
+  post = Post.create(
+      {
+          user: User.find(Faker::Number.between(1, users)),
+          content: Faker::Lorem.paragraph
+      }
+  );
+  Faker::Number.between(1, 20).times do
+    Comment.create({
+                       post: post,
+                       user: User.find(Faker::Number.between(1, users)),
+                       content: Faker::Lorem.sentence
+                   })
+  end
+end
