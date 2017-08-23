@@ -48,7 +48,4 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: NewsFeeder_production
-  username: NewsFeeder
-  password: <%= ENV['NEWSFEEDER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
