@@ -13,14 +13,14 @@ end
 
   post = Post.create(
       {
-          user: User.order("RANDOM()").first!,
+          user: User.order("RAND()").first!,
           content: Faker::Lorem.paragraph
       }
   );
   Faker::Number.between(1, 20).times do
     Comment.create({
                        post: post,
-                       user: User.order("RANDOM()").first!,
+                       user: User.order("RAND()").first!,
                        content: Faker::Lorem.sentence
                    })
   end
