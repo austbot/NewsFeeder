@@ -5,11 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-users = Faker::Number.between(1, 200)
+users = Faker::Number.between(1, 20)
 users.times do
   User.create({name: Faker::Name.name});
 end
-100.times do
+50.times do
 
   post = Post.create(
       {
@@ -17,7 +17,7 @@ end
           content: Faker::Lorem.paragraph
       }
   );
-  Faker::Number.between(1, 20).times do
+  Faker::Number.between(1, 5).times do
     Comment.create({
                        post: post,
                        user: User.order("RAND()").first!,
